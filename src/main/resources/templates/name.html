@@ -4,21 +4,23 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>Color Game</title>
+    <title>MongoDB REST API</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
 </head>
 <body>
     <div class="container">
-        <p><span th:text="${name.name}"> Name </span></p>
-        <p><span th:text="${name.status}"> Status </span></p>
-        <p><span th:text="${name.idNumber}"> Id Number </span></p>
-        <p><span th:text="${name.id}"> Id reference </span></p>
-        <form action="#" th:action="@{'/names/delete/{id}'(id=${name.id})}" th:method="delete" >
-            <input type="hidden" name="deleteObject" th:value="${name.id}" />
-            <button type="submit" id="submitButton" class="btn btn-outline-warning btn-sm active">Delete</button>
-        </form>
-
-        <!--<td><span> <a th:href="'/names/' + ${name.id}" th:method="delete" class="btn btn-outline-warning btn-sm active" role="button" aria-pressed="true">Delete</a> </span></td>-->
+        <div class="card" style="width: 24rem;">
+            <div class="card-body">
+                <h5 class="card-title">NAME: <span th:text="${name.name}"></span></h5>
+                <p class="card-text">STATUS: <span th:text="${name.status}"> Id Number </span></p>
+                <p class="card-text">ID NUMBER: <span th:text="${name.idNumber}"> Id Number </span></p>
+                <p class="card-text">MONGO ID: <span th:text="${name.id}"> Id reference </span></p>
+                <form action="#" th:action="@{'/names/delete/{id}'(id=${name.id})}" th:method="delete" >
+                    <input type="hidden" name="deleteObject" th:value="${name.id}" />
+                    <button type="submit" id="submitButton" class="btn btn-outline-danger btn-sm active">Delete</button>
+                </form>
+            </div>
+        </div>
     </div>
 <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
 </body>

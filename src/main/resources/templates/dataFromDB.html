@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>Color Game</title>
+    <title>MongoDB REST API</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
 </head>
 <body>
@@ -18,18 +18,12 @@
     </tr>
     </thead>
     <tbody>
-    <!--<tr th:if="${names.empty}">-->
-        <!--<td colspan="2"> No Names Available </td>-->
-    <!--</tr>-->
+    <tr th:if="${names.empty}">
+        <td colspan="2"> No Names Available </td>
+    </tr>
     <tr th:each="name : ${names}">
         <td><span th:text="${name.name}"> Name </span></td>
         <td><span th:text="${name.status}"> Status </span></td>
-        <!--<td>-->
-            <!--<form action="#" th:action="@{'/names/{id}'(id=${name.id})}" th:method="delete" >-->
-                <!--<input type="hidden" name="deleteObject" th:value="${name.id}" />-->
-                <!--<button type="submit" id="submitButton" class="btn btn-outline-warning btn-sm active">Delete</button>-->
-            <!--</form>-->
-        <!--</td>-->
         <td><span> <a th:href="'/names/' + ${name.id}" th:method="get" class="btn btn-outline-warning btn-sm active" role="button" aria-pressed="true">See More</a> </span></td>
     </tr>
     </tbody>
