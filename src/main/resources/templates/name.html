@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Color Game</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+    <div class="container">
+        <p><span th:text="${name.name}"> Name </span></p>
+        <p><span th:text="${name.status}"> Status </span></p>
+        <p><span th:text="${name.idNumber}"> Id Number </span></p>
+        <p><span th:text="${name.id}"> Id reference </span></p>
+        <form action="#" th:action="@{'/names/delete/{id}'(id=${name.id})}" th:method="delete" >
+            <input type="hidden" name="deleteObject" th:value="${name.id}" />
+            <button type="submit" id="submitButton" class="btn btn-outline-warning btn-sm active">Delete</button>
+        </form>
+
+        <!--<td><span> <a th:href="'/names/' + ${name.id}" th:method="delete" class="btn btn-outline-warning btn-sm active" role="button" aria-pressed="true">Delete</a> </span></td>-->
+    </div>
+<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>
