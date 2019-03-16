@@ -20,15 +20,25 @@ public class NamesController {
     public String showMainPage() {
         return "index";
     }
+    @RequestMapping (value = "/names", method= RequestMethod.POST)
+    String createObject(@RequestParam("name") String theName,
+                        @RequestParam("idNumber") int theIdNumber,
+                        @RequestParam(name = "status", defaultValue = "unchecked") String status,
+                        Model model) {
 
-    @RequestMapping(value = "/names", method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.CREATED)
-    Names create(@RequestBody Names name) {
-        dataBase.create(name);
-        return name;
+        boolean theStatus = status.equals("on");
+        Names createdName = new Names(theName, theStatus, theIdNumber);
+        dataBase.create(createdName);
+        model.addAttribute("names", dataBase.findAll());
+        return "dataFromDb";
     }
 
-    @RequestMapping(value = "/names/delete/{id}", method = RequestMethod.POST)//DELETE
+    @GetMapping(value = "/PostNewName")
+    String openForm() {
+        return "PostNewName";
+    }
+
+    @RequestMapping(value = "/names/delete/{id}")//DELETE
     public String deleteObejct(@PathVariable("id") String id, Model model) {
          dataBase.deleteById(id);
          model.addAttribute("names", dataBase.findAll());
@@ -40,9 +50,6 @@ public class NamesController {
         model.addAttribute("names", dataBase.findAll());
         return "dataFromDb";
     }
-//    List<Names> findAll() {
-//        return dataBase.findAll();
-//    }
 
     @RequestMapping(value = "names/{id}", method = RequestMethod.GET)
     public String findById (@PathVariable("id") String id, Model model) {
