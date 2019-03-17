@@ -57,10 +57,25 @@ public class NamesController {
         return "name";
     }
 
-    @RequestMapping(value = "names/{id}", method = RequestMethod.PUT)
-    Names update(@RequestBody Names name, @PathVariable String id) {
-        dataBase.update(name, id);
-        return name;
+    @GetMapping(value = "/updateName/{id}")
+    String updateForm(@PathVariable("id") String id, Model model) {
+
+        model.addAttribute("theName", dataBase.findById(id));
+        return "UpdateName";
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST)//PUT
+    String update(@RequestParam("id") String id,
+                  @RequestParam("name") String theName,
+                  @RequestParam("idNumber") int theIdNumber,
+                  @RequestParam(name = "status", defaultValue = "unchecked") String status,
+                  Model model) {
+
+        boolean theStatus = status.equals("on");
+        Names tempName = new Names(theName, theStatus, theIdNumber);
+        dataBase.update(tempName, id);
+        model.addAttribute("names", dataBase.findAll());
+        return "dataFromDb";
     }
 
     @ExceptionHandler

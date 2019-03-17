@@ -16,6 +16,7 @@
         <th scope="col"> Name </th>
         <th scope="col"> Status </th>
         <th scope="col"> <a href="/PostNewName"  class="btn btn-outline-success btn-sm active" role="button" aria-pressed="true">Add New</a> </th>
+        <th scope="col"> Update </th>
     </tr>
     </thead>
     <tbody>
@@ -24,6 +25,7 @@
         <td><span th:text="${name.name}"> Name </span></td>
         <td><span th:text="${name.status}"> Status </span></td>
         <td><span> <a th:href="'/names/' + ${name.id}" th:method="get" class="btn btn-outline-warning btn-sm active" role="button" aria-pressed="true">See More</a> </span></td>
+        <td><span> <a th:href="'/updateName/' + ${name.id}" th:method="get" class="btn btn-outline-info btn-sm active" role="button" aria-pressed="true">Click to update</a> </span></td>
     </tr>
     </tbody>
     </table>
